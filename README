@@ -1,1 +1,11 @@
 I want to make a module that will allow you to add multiple products in an excel spreadsheet like form.
+
+
+Steps
+-----
+
+Create a script that will add multiple products
+
+Create a new module with a form
+
+Write the backend that will make the form functional
