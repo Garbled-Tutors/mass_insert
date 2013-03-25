@@ -27,40 +27,42 @@
 							<td class="left">Description</td>
             </tr>
           </thead>
+					<?php for ($i = 0; $i < 5; $i++) { ?>
 					<tr>
 						<td>
-							<input type="text" name="mass_insert_module[product_description][1][name]" />
+							<input type="text" name="mass_insert_module[<? echo $i; ?>][product_description][1][name]" />
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[model]" size=10 />
+							<input type="text" name="mass_insert_module[<? echo $i; ?>][model]" size=10 />
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[quantity]" size=5 />
+							<input type="text" name="mass_insert_module[<? echo $i; ?>][quantity]" size=5 />
 						</td>
 						<td>
-							<select name="mass_insert_module[stock_status_id]">
+							<select name="mass_insert_module[<? echo $i; ?>][stock_status_id]">
 								<?php foreach ($stock_statuses as $status) { ?>
 								<option value=<?php echo $status['stock_status_id']; ?>><?php echo $status['name']; ?></option>
 								<?php } ?>
 							</select>
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[price]" size=5 />
+							<input type="text" name="mass_insert_module[<? echo $i; ?>][price]" size=5 />
 						</td>
 						<td>
-							<select name="mass_insert_module[tax_class_id]">
+							<select name="mass_insert_module[<? echo $i; ?>][tax_class_id]">
 								<?php foreach ($tax_classes as $tax_class) { ?>
 								<option value=<?php echo $tax_class['tax_class_id']; ?>><?php echo $tax_class['title']; ?></option>
 								<?php } ?>
 							</select>
 						</td>
 						<td>
-							<input class="date hasDatepicker" type="date" size="12" value="2009-02-03" name="mass_insert_module[date_available]">
+							<input class="date hasDatepicker" type="date" size="12" value="2009-02-03" name="mass_insert_module[<? echo $i; ?>][date_available]">
 						</td>
 						<td>
-							<textarea name="mass_insert_module[product_description][1][description]" cols=40 /></textarea>
+							<textarea name="mass_insert_module[<? echo $i; ?>][product_description][1][description]" cols=40 /></textarea>
 						</td>
 					</tr>
+					<?php } ?>
 					<tfoot>
 						<td colspan=8 height=40>
 							<a onclick="$('#form').submit();" class="button">Add Products</a>
