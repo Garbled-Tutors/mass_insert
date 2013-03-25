@@ -39,10 +39,9 @@
 						</td>
 						<td>
 							<select name="mass_insert_module[StockStatus]">
-								<option value=5>Out of Stock</option>
-								<option value=6>2-3 Days</option>
-								<option value=7 selected>In Stock</option>
-								<option value=8>Pre-Order</option>
+								<?php foreach ($stock_statuses as $status) { ?>
+								<option value=<?php echo $status['stock_status_id']; ?>><?php echo $status['name']; ?></option>
+								<?php } ?>
 							</select>
 						</td>
 						<td>
@@ -50,8 +49,9 @@
 						</td>
 						<td>
 							<select name="mass_insert_module[TaxClass]">
-								<option value=9 selected>Taxable Goods</option>
-								<option value=10>Downloadable Products</option>
+								<?php foreach ($tax_classes as $tax_class) { ?>
+								<option value=<?php echo $tax_class['tax_class_id']; ?>><?php echo $tax_class['title']; ?></option>
+								<?php } ?>
 							</select>
 						</td>
 						<td>

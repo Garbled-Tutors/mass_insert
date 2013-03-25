@@ -23,6 +23,12 @@ class ControllerModuleMassInsert extends Controller {
 		$this->data['breadcrumbs'] = $this->get_bread_crumbs('Mass Insert', 'mass_insert', $this->session->data['token']);
 
 		$this->load->model('design/layout');
+		$this->load->model('catalog/product');
+		$this->load->model('localisation/tax_class');
+		$this->load->model('localisation/stock_status');
+		
+		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
+		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
 
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
