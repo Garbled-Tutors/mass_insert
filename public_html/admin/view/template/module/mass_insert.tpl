@@ -29,36 +29,36 @@
           </thead>
 					<tr>
 						<td>
-							<input type="text" name="mass_insert_module[ProductName]" />
+							<input type="text" name="mass_insert_module[product_description][1][name]" />
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[Model]" size=10 />
+							<input type="text" name="mass_insert_module[model]" size=10 />
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[Quantity]" size=5 />
+							<input type="text" name="mass_insert_module[quantity]" size=5 />
 						</td>
 						<td>
-							<select name="mass_insert_module[StockStatus]">
+							<select name="mass_insert_module[stock_status_id]">
 								<?php foreach ($stock_statuses as $status) { ?>
 								<option value=<?php echo $status['stock_status_id']; ?>><?php echo $status['name']; ?></option>
 								<?php } ?>
 							</select>
 						</td>
 						<td>
-							<input type="text" name="mass_insert_module[Price]" size=5 />
+							<input type="text" name="mass_insert_module[price]" size=5 />
 						</td>
 						<td>
-							<select name="mass_insert_module[TaxClass]">
+							<select name="mass_insert_module[tax_class_id]">
 								<?php foreach ($tax_classes as $tax_class) { ?>
 								<option value=<?php echo $tax_class['tax_class_id']; ?>><?php echo $tax_class['title']; ?></option>
 								<?php } ?>
 							</select>
 						</td>
 						<td>
-							<input class="date hasDatepicker" type="date" size="12" value="2009-02-03" name="mass_insert_module[DateAvailable]">
+							<input class="date hasDatepicker" type="date" size="12" value="2009-02-03" name="mass_insert_module[date_available]">
 						</td>
 						<td>
-							<textarea name="mass_insert_module[Description]" cols=40 /></textarea>
+							<textarea name="mass_insert_module[product_description][1][description]" cols=40 /></textarea>
 						</td>
 					</tr>
 					<tfoot>

@@ -21,6 +21,17 @@ class ControllerModuleMassInsert extends Controller {
 		}
 
 		$this->data['breadcrumbs'] = $this->get_bread_crumbs('Mass Insert', 'mass_insert', $this->session->data['token']);
+		$this->data['action'] = '';
+
+		if (isset($this->request->post['mass_insert_module'])) {
+			$this->load->model('catalog/product');
+			$default_vaules = array('sku' => '','upc' => '','ean' => '','jan' => '','isbn' => '','mpn' => '','location' => '','minimum' => '','subtract' => '',
+				'manufacturer_id' => 0,'shipping' => 1,'points' => 0,'weight' => 0,'weight_class_id' => 0,'length' => 0,'width' => 0,'height' => 0,
+				'length_class_id' => 0,'status' => 0,'sort_order' => 0, 'keyword' => null);
+			$product_data = array_merge($default_vaules, $this->request->post['mass_insert_module']);
+			$product_data['product_description'][1] = array_merge(array('meta_keyword' => '', 'meta_description' => '', 'tag' => '', 'keyword' => ''), $product_data['product_description'][1]);
+			$this->model_catalog_product->addProduct($product_data);
+		}
 
 		$this->load->model('design/layout');
 		$this->load->model('catalog/product');
