@@ -6,6 +6,8 @@ Steps
 
 Create a script that will add multiple products
 
-Create a new module with a form
+Create a new module with a form (Single Field)
 
 Write the backend that will make the form functional
+
+Update form to add multiple entries
