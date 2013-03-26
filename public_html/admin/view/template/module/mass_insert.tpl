@@ -6,10 +6,11 @@
 		var row_count = table.getElementsByTagName("tr").length;
 		var product_index = row_count - 2;
 		var row=table.insertRow(row_count - 1);
+		row.align="center";
 
 		var cell;
 		cell=row.insertCell(0);
-		cell.innerHTML="<input type=\"checkbox\" name=\"mass_insert_module_ignore[" + product_index + "]\" checked=\"checked\" id=\"delete_module" + product_index + "\" />";
+		cell.innerHTML="<input type=\"checkbox\" name=\"mass_insert_module[" + product_index + "][ignore]\" checked=\"checked\" id=\"delete_module" + product_index + "\" />";
 
 		cell=row.insertCell(1);
 		cell.innerHTML="<input type=\"text\" name=\"mass_insert_module[" + product_index + "][product_description][1][name]\" onchange=\"enable_product(" + product_index + ")\" />";
@@ -67,16 +68,16 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table id="module" class="list">
           <thead>
-            <tr>
-							<td class="left" width=50>Delete</td>
-							<td class="left" width=100>Product Name</td>
-							<td class="left" width=100>Model</td>
-							<td class="left" width=100>Quantity</td>
-							<td class="left" width=100>Stock Status</td>
-							<td class="left" width=100>Price</td>
-							<td class="left" width=100>Tax Class</td>
-							<td class="left" width=100>Date Available</td>
-							<td class="left">Description</td>
+            <tr align="center">
+							<td width=50>Delete</td>
+							<td width=100>Product Name</td>
+							<td width=100>Model</td>
+							<td width=100>Quantity</td>
+							<td width=100>Stock Status</td>
+							<td width=100>Price</td>
+							<td width=100>Tax Class</td>
+							<td width=100>Date Available</td>
+							<td>Description</td>
             </tr>
           </thead>
 					<tfoot>
