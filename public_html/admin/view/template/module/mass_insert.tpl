@@ -22,20 +22,9 @@
 		cell.innerHTML="<input type=\"text\" name=\"mass_insert_module[" + product_index + "][quantity]\" size=5 />";
 
 		cell=row.insertCell(4);
-		cell.innerHTML="<select name=\"mass_insert_module[" + product_index + "][stock_status_id]\"><?php foreach ($stock_statuses as $status) { 
-		?><option value=<?php echo $status['stock_status_id']; ?>><?php echo $status['name']; ?></option><?php } ?></select>";
-
-		cell=row.insertCell(5);
 		cell.innerHTML="<input type=\"text\" name=\"mass_insert_module[" + product_index + "][price]\" size=5 />";
-
-		cell=row.insertCell(6);
-		cell.innerHTML="<select name=\"mass_insert_module[" + product_index + "][tax_class_id]\"><?php foreach ($tax_classes as $tax_class) { 
-		?><option value=<?php echo $tax_class['tax_class_id']; ?>><?php echo $tax_class['title']; ?></option><?php } ?></select>";
-
-		cell=row.insertCell(7);
-		cell.innerHTML="<input class=\"date hasDatepicker\" type=\"date\" size=\"12\" value=\"2009-02-03\" name=\"mass_insert_module[" + product_index + "][date_available]\">";
 	
-		cell=row.insertCell(8);
+		cell=row.insertCell(5);
 		cell.innerHTML="<textarea name=\"mass_insert_module[" + product_index + "][product_description][1][description]\" cols=40 /></textarea>";
 	}
 	function enable_product(index)
@@ -66,22 +55,72 @@
     </div>
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+			<h2>Apply to all products</h2>
+
+			<table>
+				<tr>
+					<td rowspan=2>
+						<label>Categories</label>
+						<div class="scrollbox">
+							<?php $i=0; ?>
+							<?php foreach ($categories as $category) { ?>
+							<div class='<? if ($i % 2 == 1) { echo "odd"; } else { echo "even"; } ?>'>
+								<input type="checkbox" value="<? echo $category['category_id']; ?>" name="product_category[]">
+								<? echo $category['name']; ?>
+							</div>
+							<?php $i=$i+1; ?>
+							<?php } ?>
+						</div>
+					</td>
+					<td>
+						<label>Stores</label>
+						<div class="scrollbox">
+							<div class="even">
+								<input type="checkbox" checked="checked" value="0" name="product_store[]">
+								Default
+							</div>
+							<?php $i=1; ?>
+							<?php foreach ($stores as $store) { ?>
+							<div class='<? if ($i % 2 == 1) { echo "odd"; } else { echo "even"; } ?>'>
+								<input type="checkbox" value="<? echo $store['store_id']; ?>" name="product_store[]">
+								<? echo $store['name']; ?>
+							</div>
+							<?php $i=$i+1; ?>
+							<?php } ?>
+						</div>
+					</td>
+					<td>
+						<label>Stock Status</label>
+						<select name='stock_status_id'>
+							<?php foreach ($stock_statuses as $status) { 	?>
+							<option value=<?php echo $status['stock_status_id']; ?>><?php echo $status['name']; ?></option>
+							<?php } ?>
+						</select><br /><br />
+
+						<label>Tax Class</label>
+						<select name='tax_class_id'>
+							<?php foreach ($tax_classes as $tax_class) { ?>
+							<option value=<?php echo $tax_class['tax_class_id']; ?>><?php echo $tax_class['title']; ?></option>
+							<?php } ?>
+						</select><br /><br />
+					</td>
+				</tr>
+			</table>
+
+			<h2>New Products</h2>
         <table id="module" class="list">
           <thead>
             <tr align="center">
-							<td width=50>Delete</td>
-							<td width=100>Product Name</td>
-							<td width=100>Model</td>
-							<td width=100>Quantity</td>
-							<td width=100>Stock Status</td>
-							<td width=100>Price</td>
-							<td width=100>Tax Class</td>
-							<td width=100>Date Available</td>
+							<td>Delete</td>
+							<td>Product Name</td>
+							<td>Model</td>
+							<td>Quantity</td>
+							<td>Price</td>
 							<td>Description</td>
             </tr>
           </thead>
 					<tfoot>
-						<td colspan=9 height=40>
+						<td colspan=6 height=40>
 							<a onclick="addProduct()" class="button">Add Product</a>
 							<a onclick="$('#form').submit();" class="button">Save</a>
 						</td>

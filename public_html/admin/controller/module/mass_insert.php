@@ -30,8 +30,9 @@ class ControllerModuleMassInsert extends Controller {
 				if (!isset($product_data['ignore']))
 				{
 					$default_vaules = array('sku' => '','upc' => '','ean' => '','jan' => '','isbn' => '','mpn' => '','location' => '','minimum' => '','subtract' => '',
-						'manufacturer_id' => 0,'shipping' => 1,'points' => 0,'weight' => 0,'weight_class_id' => 0,'length' => 0,'width' => 0,'height' => 0,
-						'length_class_id' => 0,'status' => 0,'sort_order' => 0, 'keyword' => null);
+						'manufacturer_id' => 0,'shipping' => 1,'points' => 0,'weight' => 0,'weight_class_id' => 0,'length' => 0,'width' => 0,'height' => 0,'length_class_id' => 0,
+						'status' => 0,'sort_order' => 0, 'keyword' => null, 'tax_class_id' => $this->request->post['tax_class_id'], 'stock_status_id' => $this->request->post['stock_status_id'],
+						'date_available' => 'NOW()', 'product_category' => $this->request->post['product_category'], 'product_store' => $this->request->post['product_store']);
 					$product_data = array_merge($default_vaules, $product_data);
 					$product_data['product_description'][1] = array_merge(array('meta_keyword' => '', 'meta_description' => '', 'tag' => '', 'keyword' => ''), $product_data['product_description'][1]);
 					$this->model_catalog_product->addProduct($product_data);
@@ -43,9 +44,14 @@ class ControllerModuleMassInsert extends Controller {
 		$this->load->model('catalog/product');
 		$this->load->model('localisation/tax_class');
 		$this->load->model('localisation/stock_status');
-		
+		$this->load->model('setting/store');
+		$this->load->model('catalog/category');
+
 		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
+		$this->data['stores'] = $this->model_setting_store->getStores();
+		$this->data['categories'] = $this->model_catalog_category->getCategories();
+
 
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
